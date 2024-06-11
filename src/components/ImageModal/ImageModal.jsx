@@ -1,7 +1,16 @@
 import ReactModal from "react-modal";
 import styles from "./ImageModal.module.css";
 
-const ImageModal = ({ isOpen, onRequestClose, largeImageURL }) => {
+const ImageModal = ({
+  isOpen,
+  onRequestClose,
+  largeImageURL,
+  description,
+  likes,
+  tags,
+  user,
+  created_at,
+}) => {
   return (
     <ReactModal
       isOpen={isOpen}
@@ -10,7 +19,20 @@ const ImageModal = ({ isOpen, onRequestClose, largeImageURL }) => {
       overlayClassName={styles.overlay}
       ariaHideApp={false}
     >
-      <img src={largeImageURL} alt="Large" className={styles.image} />
+      <div className={styles.modalBoxOverlay}>
+        <button className={styles.closeButton} onClick={onRequestClose}>
+          Close
+        </button>
+        <img src={largeImageURL} alt="Large" className={styles.image} />
+        <div className={styles.textContainer}>
+          <h2 className={styles.modalText}>Description: {description}</h2>
+          <p className={styles.additionalInfo}>
+            Likes: {likes} | Tags: {tags.map((tag) => tag.title).join(", ")} |
+            Created by: {user.username} | Created at:{" "}
+            {new Date(created_at).toLocaleDateString()}
+          </p>
+        </div>
+      </div>
     </ReactModal>
   );
 };
