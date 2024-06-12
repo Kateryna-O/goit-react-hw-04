@@ -1,10 +1,14 @@
-
 import styles from "./ImageCard.module.css";
 
-const ImageCard = ({ urls, description }) => {
+const ImageCard = ({ urls, description, onClick }) => {
   return (
     <div className={styles.card}>
-      <img src={urls.small} alt={description} className={styles.image} />
+      <img
+        onClick={onClick}
+        src={urls.small}
+        alt={description}
+        className={styles.image}
+      />
     </div>
   );
 };

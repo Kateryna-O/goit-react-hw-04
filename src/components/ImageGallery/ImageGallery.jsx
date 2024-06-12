@@ -3,17 +3,17 @@ import styles from "./ImageGallery.module.css";
 
 const ImageGallery = ({ images, openModal }) => {
   return (
-    <div className={styles.gallery}>
+    <ul className={styles.gallery}>
       {images.map((image) => (
-        <div
-          key={image.id}
-          className={styles.imageWrapper}
-          onClick={() => openModal(image)}
-        >
-          <ImageCard urls={image.urls} description={image.description} />
-        </div>
+        <li key={image.id} className={styles.imageWrapper}>
+          <ImageCard
+            onClick={() => openModal(image)}
+            urls={image.urls}
+            description={image.description}
+          />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
